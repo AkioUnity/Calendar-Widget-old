@@ -13,7 +13,6 @@ import {
 } from 'native-base';
 import styles from './style';
 import {NavigationActions,StackActions} from 'react-navigation';
-import {logout} from '../../container/LoginContainer/actions';
 
 // const drawerImage = require('../../../assets/logo-kitchen-sink.png');
 const datas = [
@@ -49,7 +48,6 @@ class SideBar extends Component {
 
   handleLogout(){
     console.log('logout');
-    this.props.doLogout(() => this.props.navigation.dispatch(resetAction));
     // logout(() => this.props.navigation.dispatch(resetAction));
   }
 
@@ -95,10 +93,6 @@ class SideBar extends Component {
 
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({
-    // fetchList: fetchList,
-    doLogout: logout,
-  }, dispatch);
 }
 
 const mapStateToProps = state => ({
