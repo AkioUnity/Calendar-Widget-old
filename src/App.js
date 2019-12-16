@@ -5,6 +5,7 @@ import { createStackNavigator, createDrawerNavigator ,createAppContainer} from '
 import Main from './pages/main';
 import Home from './container/HomeContainer';
 import SideBar from './pages/sidebar';
+import Calendar from './pages/calendar';
 
 const Drawer = createDrawerNavigator(
   {
@@ -23,8 +24,7 @@ const Drawer = createDrawerNavigator(
 const AppNavigator = createStackNavigator(
   {
     Main: { screen: Main },
-    HomeRoute: { screen: Home},
-    // SignUpRoute: { screen: SignUpPage },
+    Calendar: { screen: Calendar},
   },
   {
     initialRouteName: 'Main',

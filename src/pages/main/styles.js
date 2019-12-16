@@ -3,14 +3,6 @@ const h=Dimensions.get('window').height;
 const w=Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#ffffff',
-  },
-  backgroundImage: {
-    width:w,
-    height:h-24,
-    resizeMode: 'stretch', // or 'stretch'
-  },
   title:{
     fontSize:28,
     fontWeight: 'bold',

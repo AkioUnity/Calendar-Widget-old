@@ -4,14 +4,21 @@ const w=Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff"
+    backgroundColor: '#ffffff',
   },
   bottomView:{
     position: 'absolute',
     bottom:10,
-    right:0,
-    left:0,
+    right:w*0.15,
+    left:w*0.15,
     flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  backgroundImage: {
+    width:w,
+    height:h-24,
+    resizeMode: 'stretch', // or 'stretch'
   },
   logoImage:{
     alignSelf: 'center',
