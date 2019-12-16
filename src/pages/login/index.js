@@ -31,7 +31,7 @@ class Login extends React.Component<Props, State> {
                   {/*<Icon name="menu"/>*/}
                   {/*</Button>*/}
                   <View style={{alignItems: 'center'}}>
-                      <Image square style={global.logoImage} source={require('../../../assets/whatsapp/lamoga.png')}/>
+                      {/*<Image square style={global.logoImage} source={require('../../../assets/kaybear/lamoga.png')}/>*/}
                       {
                           this.props.isLogged ?
                             <View style={{marginBottom:10}}>

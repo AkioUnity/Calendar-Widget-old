@@ -537,9 +537,9 @@ class Icons extends Component {
                 </Text>
               </Col>
               <Col style={styles.col}>
-                <Icon name="logo-whatsapp" style={{ color: "#000" }} />
+                <Icon name="logo-kaybear" style={{ color: "#000" }} />
                 <Text numberOfLines={1} style={styles.iconText}>
-                  logo-whatsapp
+                  logo-kaybear
                 </Text>
               </Col>
               <Col style={styles.col}>

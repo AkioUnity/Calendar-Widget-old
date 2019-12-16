@@ -1,4 +1,4 @@
-package com.whatsapp;
+package com.kaybear;
 
 import android.app.Application;
 import android.content.Context;

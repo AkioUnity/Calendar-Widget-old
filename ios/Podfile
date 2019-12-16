@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'whatsapp' do
-  # Pods for whatsapp
+target 'kaybear' do
+  # Pods for kaybear
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -36,7 +36,7 @@ target 'whatsapp' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-  target 'whatsappTests' do
+  target 'kaybearTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -44,10 +44,10 @@ target 'whatsapp' do
   use_native_modules!
 end
 
-target 'whatsapp-tvOS' do
-  # Pods for whatsapp-tvOS
+target 'kaybear-tvOS' do
+  # Pods for kaybear-tvOS
 
-  target 'whatsapp-tvOSTests' do
+  target 'kaybear-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

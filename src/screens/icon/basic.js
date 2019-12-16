@@ -403,7 +403,7 @@ class BasicIcon extends Component {
               style={{ width: 45, height: 45, justifyContent: "center" }}
             />
             <Icon
-              name="logo-whatsapp"
+              name="logo-kaybear"
               style={{ width: 45, height: 45, justifyContent: "center" }}
             />
             <Icon

@@ -2,14 +2,12 @@ import React from 'react';
 import { Root } from 'native-base';
 import { createStackNavigator, createDrawerNavigator ,createAppContainer} from 'react-navigation';
 
-import Login from './container/LoginContainer';
-import BlankPage from './pages/blankPage';
+import Main from './pages/main';
 import Home from './container/HomeContainer';
 import SideBar from './pages/sidebar';
 
 const Drawer = createDrawerNavigator(
   {
-    Login: { screen: Login },
     // WebRoute: { screen: WebView },
     Home: { screen: Home },
   },
@@ -24,12 +22,12 @@ const Drawer = createDrawerNavigator(
 
 const AppNavigator = createStackNavigator(
   {
-    Login: { screen: Login },
+    Main: { screen: Main },
     HomeRoute: { screen: Home},
     // SignUpRoute: { screen: SignUpPage },
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'Main',
     headerMode: 'none',
   }
 );

@@ -4,7 +4,14 @@ const w=Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#B0DAE6"
+    backgroundColor: "#fff"
+  },
+  bottomView:{
+    position: 'absolute',
+    bottom:10,
+    right:0,
+    left:0,
+    flex: 1,
   },
   logoImage:{
     alignSelf: 'center',

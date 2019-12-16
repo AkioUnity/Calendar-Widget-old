@@ -48,7 +48,7 @@ class BasicFab extends Component {
           >
             <IconNB name="md-share" />
             <Button style={{ backgroundColor: "#34A34F" }}>
-              <IconNB name="logo-whatsapp" />
+              <IconNB name="logo-kaybear" />
             </Button>
             <Button style={{ backgroundColor: "#3B5998" }}>
               <IconNB name="logo-facebook" />

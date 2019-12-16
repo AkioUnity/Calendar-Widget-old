@@ -539,9 +539,9 @@ class StateIcon extends Component {
                 </Text>
               </Col>
               <Col style={styles.col}>
-                <Icon name="logo-whatsapp" />
+                <Icon name="logo-kaybear" />
                 <Text numberOfLines={1} style={styles.iconText}>
-                  logo-whatsapp
+                  logo-kaybear
                 </Text>
               </Col>
               <Col style={styles.col}>

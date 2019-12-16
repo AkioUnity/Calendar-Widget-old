@@ -33,7 +33,6 @@ export interface Props {
 export interface State {
 }
 
-
 class HomeContainer extends React.Component<Props, State> {
 
     constructor(props) {
@@ -85,7 +84,7 @@ class HomeContainer extends React.Component<Props, State> {
             {/*style={global.watermark}>*/}
             <Content padder>
                 <Text style={styles.reportText}>{I18n.t('Cockpit')}</Text>
-                <Image square style={global.logoImage} source={require('../../../assets/whatsapp/lamoga.png')}/>
+                {/*<Image square style={global.logoImage} source={require('../../../assets/kaybear/lamoga.png')}/>*/}
                 <Card>
                     <CardItem>
                         <Body>
