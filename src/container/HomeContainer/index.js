@@ -13,11 +13,8 @@ import {
 
 import {Image, Switch, View} from "react-native";
 import global from "../../global/styles";
-import AdFooter from "../../pages/base";
-
 import React, {Component} from 'react';
 import styles from './styles';
-import I18n from '../../global/i18n';
 
 const resetAction = StackActions.reset({
     index: 0,
@@ -83,13 +80,9 @@ class HomeContainer extends React.Component<Props, State> {
             {/*<ImageBackground resizeMode="contain" source={require("../../../assets/ui/Logo1.png")}*/}
             {/*style={global.watermark}>*/}
             <Content padder>
-                <Text style={styles.reportText}>{I18n.t('Cockpit')}</Text>
                 {/*<Image square style={global.logoImage} source={require('../../../assets/kaybear/lamoga.png')}/>*/}
                 <Card>
                     <CardItem>
-                        <Body>
-                        <Text>{I18n.t('Messenger_systems')}</Text>
-                        </Body>
                         <Right>
                             <Switch
                               onValueChange={this.toggleSwitch}
@@ -97,50 +90,16 @@ class HomeContainer extends React.Component<Props, State> {
                         </Right>
                     </CardItem>
                     <CardItem>
-                        <Body>
-                        <Text>{I18n.t('Call_system')}</Text>
-                        </Body>
                         <Right>
                             <Switch
                               onValueChange={this.toggleSwitch1}
                               value={this.state.call_system}/>
                         </Right>
                     </CardItem>
-                    <CardItem footer bordered>
-                        <Text style={styles.titleText}>{I18n.t('Requests')}:</Text>
-                    </CardItem>
-                    <CardItem>
-                        <Body>
-                        <Text>{I18n.t('Messenger')}:</Text>
-                        </Body>
-                        <Right>
-                            <Text>{this.props.request_cn}</Text></Right>
-                    </CardItem>
-                    <CardItem footer>
-                        <Body>
-                        <Text>{I18n.t('Callback_requests')}</Text>
-                        <Text>{I18n.t('overall')}:</Text>
-                        <Text>in 1h: </Text>
-                        <Text>in 2h: </Text>
-                        </Body>
-                        <Right>
-                            <Text></Text>
-                            <Text>{this.props.request_cn}</Text>
-                            <Text>{this.props.request_cn}</Text>
-                            <Text>{this.props.request_cn}</Text>
-                        </Right>
-                    </CardItem>
-                    <CardItem footer>
-                        <Body>
-                        <Text>{I18n.t('date_requests')}:</Text>
-                        </Body>
-                        <Right>
-                            <Text>{this.props.request_cn}</Text></Right>
-                    </CardItem>
+
                 </Card>
             </Content>
             {/*</ImageBackground>*/}
-            <AdFooter navigation={this.props.navigation}/>
         </Container>);
     }
 }
