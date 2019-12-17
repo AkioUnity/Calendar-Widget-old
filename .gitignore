@@ -40,7 +40,10 @@ local.properties
 
 # node.js
 #
+!node_modules/
 node_modules/*
+!node_modules/react-native-calendars/
+node_modules/react-native-calendars/*
 !node_modules/react-native-calendars/src/
 npm-debug.log
 yarn-error.log
