@@ -18,6 +18,7 @@ class CalendarPage extends Component {
                   <ImageBackground source={require('../../images/January.png')} style={global.backgroundImage}
                                    imageStyle={{borderRadius: 40}}>
                       <Calendar style={styles.calendar}
+
                         // Handler which gets executed on day press. Default = undefined
                         onDayPress={(day) => {
                             console.log('selected day', day);
@@ -32,30 +33,28 @@ class CalendarPage extends Component {
                         onMonthChange={(month) => {
                             console.log('month changed', month);
                         }}
-                        // Hide month navigation arrows. Default = false
-                        hideArrows={true}
                         // Do not show days of other months in month page. Default = false
-                        hideExtraDays={true}
+                        hideExtraDays={false}
                         // If hideArrows=false and hideExtraDays=false do not switch month when tapping on greyed out
                         // day from another month that is visible in calendar page. Default = false
                         disableMonthChange={true}
                         // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday.
                         firstDay={1}
                         // Hide day names. Default = false
-                        hideDayNames={true}
+                        hideDayNames={false}
                         // Handler which gets executed when press arrow icon left. It receive a callback can go back month
                         onPressArrowLeft={substractMonth => substractMonth()}
                         // Handler which gets executed when press arrow icon left. It receive a callback can go next month
                         onPressArrowRight={addMonth => addMonth()}
                       />
                       <View style={global.bottomView}>
-                          <TouchableOpacity style={styles.bottomBtnOutline} onPress={() => this.props.navigation.goBack()}>
-                              <Image source={require('../../images/back_arrow.png')} style={styles.bottomBtn} >
+                          <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                              <Image source={require('../../images/Backarrowtest.png')} style={styles.bottomBtn} >
                               </Image>
                           </TouchableOpacity>
                           <View style={{flex:2}}/>
-                          <TouchableOpacity style={styles.bottomBtnOutline} onPress={() => this.props.navigation.goBack()}>
-                              <Image source={require('../../images/Bear_Paw.png')} style={styles.bottomBtn} >
+                          <TouchableOpacity onPress={() => this.props.navigation.navigate('Information')}>
+                              <Image source={require('../../images/infotest.png')} style={styles.bottomBtn} >
                               </Image>
                           </TouchableOpacity>
                       </View>

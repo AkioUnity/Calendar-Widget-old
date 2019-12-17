@@ -15,10 +15,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
   },
+  informationBottom:{
+    position: 'absolute',
+    bottom:-25,
+    flex: 1,
+    alignSelf: 'center',
+  },
   backgroundImage: {
     width:w,
     height:h-24,
     resizeMode: 'stretch', // or 'stretch'
+  },
+  informationImage: {
+    width:w*0.9,
+    aspectRatio: 315 / 452,
+    resizeMode: 'contain', // or 'stretch'
+    textAlign:'center',
+    alignSelf: 'center',
   },
   logoImage:{
     alignSelf: 'center',

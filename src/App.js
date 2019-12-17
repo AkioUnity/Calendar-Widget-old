@@ -1,35 +1,36 @@
 import React from 'react';
-import { Root } from 'native-base';
-import { createStackNavigator, createDrawerNavigator ,createAppContainer} from 'react-navigation';
+import {createStackNavigator, createDrawerNavigator, createAppContainer} from 'react-navigation';
 
 import Main from './pages/main';
 import Home from './container/HomeContainer';
 import SideBar from './pages/sidebar';
 import Calendar from './pages/calendar';
+import Information from './pages/information';
 
 const Drawer = createDrawerNavigator(
   {
-    // WebRoute: { screen: WebView },
-    Home: { screen: Home },
+      // WebRoute: { screen: WebView },
+      Home: {screen: Home},
   },
   {
-    initialRouteName: 'Home',
-    contentOptions: {
-      activeTintColor: '#e91e63',
-    },
-    contentComponent: props => <SideBar {...props} />,
-  }
+      initialRouteName: 'Home',
+      contentOptions: {
+          activeTintColor: '#e91e63',
+      },
+      contentComponent: props => <SideBar {...props} />,
+  },
 );
 
 const AppNavigator = createStackNavigator(
   {
-    Main: { screen: Main },
-    Calendar: { screen: Calendar},
+      Main: {screen: Main},
+      Calendar: {screen: Calendar},
+      Information: {screen: Information},
   },
   {
-    initialRouteName: 'Main',
-    headerMode: 'none',
-  }
+      initialRouteName: 'Main',
+      headerMode: 'none',
+  },
 );
 const App = createAppContainer(AppNavigator);
 export default App;
