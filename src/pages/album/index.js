@@ -12,17 +12,17 @@ import styles from './styles';
 
 const DATA = [
     {
-        id: 'Facebook',
+        id: 'JANUARY',
         image: require('../../images/information/Icon_Facebook.png'),
         url: 'fb://page/kaybearcosplay',
     },
     {
-        id: 'Instagram',
+        id: 'FEBRUARY',
         image: require('../../images/information/Icon_Instagram.png'),
         url: 'https://www.instagram.com/kayyybear/',
     },
     {
-        id: 'Twitter',
+        id: 'MARCH',
         image: require('../../images/information/Icon_Twitter.png'),
         url: 'https://www.twitter.com/kayyybearxo',
     },
@@ -58,7 +58,7 @@ const DATA = [
     },
 ];
 
-class Information extends Component {
+class Album extends Component {
     handleClick = (url) => {
         Linking.canOpenURL(url).then(supported => {
             if (supported) {
@@ -104,4 +104,4 @@ class Information extends Component {
     }
 }
 
-export default Information;
+export default Album;

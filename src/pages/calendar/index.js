@@ -18,7 +18,25 @@ class CalendarPage extends Component {
                   <ImageBackground source={require('../../images/January.png')} style={global.backgroundImage}
                                    imageStyle={{borderRadius: 40}}>
                       <Calendar style={styles.calendar}
-
+                                theme={{
+                                    calendarBackground: 'rgba(0,0,0,0)',
+                                    textSectionTitleColor: '#75ff58',
+                                    dayTextColor: 'white',
+                                    todayTextColor: '#57b1ff',
+                                    selectedDayTextColor: '#ffe663',
+                                    monthTextColor: '#ffcc83',
+                                    indicatorColor: '#f470ff',
+                                    selectedDayBackgroundColor: '#050507',
+                                    arrowColor: '#8f68ff',
+                                    textDisabledColor: '#7b7b7b',
+                                    'stylesheet.calendar.header': {
+                                        week: {
+                                            marginTop: 10,
+                                            flexDirection: 'row',
+                                            justifyContent: 'space-between'
+                                        }
+                                    }
+                                }}
                         // Handler which gets executed on day press. Default = undefined
                         onDayPress={(day) => {
                             console.log('selected day', day);
@@ -37,7 +55,7 @@ class CalendarPage extends Component {
                         hideExtraDays={false}
                         // If hideArrows=false and hideExtraDays=false do not switch month when tapping on greyed out
                         // day from another month that is visible in calendar page. Default = false
-                        disableMonthChange={true}
+                        disableMonthChange={false}
                         // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday.
                         firstDay={1}
                         // Hide day names. Default = false

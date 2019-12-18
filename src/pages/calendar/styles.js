@@ -4,10 +4,9 @@ const h = Dimensions.get("window").height;
 const w = Dimensions.get("window").width;
 const styles: any = StyleSheet.create({
   calendar:{
-    opacity:0.5,
-    backgroundColor: '#343434',
+    // opacity:0.5,
+    backgroundColor: 'rgba(0,0,0,0.6)',
     borderRadius: 35,
-    borderWidth: 1,
     height: h-25
   },
   bottomBtn:{
