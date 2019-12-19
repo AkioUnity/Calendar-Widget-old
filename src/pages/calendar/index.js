@@ -25,6 +25,8 @@ class CalendarPage extends Component {
                                     todayTextColor: '#57b1ff',
                                     selectedDayTextColor: '#ffe663',
                                     monthTextColor: '#ffcc83',
+                                    textMonthFontWeight:'500',
+                                    textMonthFontSize:18,
                                     indicatorColor: '#f470ff',
                                     selectedDayBackgroundColor: '#050507',
                                     arrowColor: '#8f68ff',
@@ -46,7 +48,7 @@ class CalendarPage extends Component {
                             console.log('selected day', day);
                         }}
                         // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
-                        monthFormat={'yyyy MM'}
+                        monthFormat={'MMM yyyy'}
                         // Handler which gets executed when visible month changes in calendar. Default = undefined
                         onMonthChange={(month) => {
                             console.log('month changed', month);
