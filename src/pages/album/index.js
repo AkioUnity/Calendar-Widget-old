@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {TouchableOpacity, ImageBackground, Image, FlatList,Linking} from 'react-native';
+import {TouchableOpacity, ImageBackground, Image, FlatList, Linking,SafeAreaView} from 'react-native';
 import global from '../../global/styles';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import {
@@ -13,93 +13,98 @@ import styles from './styles';
 const DATA = [
     {
         id: 'JANUARY',
-        image: require('../../images/information/Icon_Facebook.png'),
-        url: 'fb://page/kaybearcosplay',
+        image: require('../../images/album/01_January.png'),
     },
     {
         id: 'FEBRUARY',
-        image: require('../../images/information/Icon_Instagram.png'),
-        url: 'https://www.instagram.com/kayyybear/',
+        image: require('../../images/album/01_January-1.png'),
     },
     {
         id: 'MARCH',
-        image: require('../../images/information/Icon_Twitter.png'),
-        url: 'https://www.twitter.com/kayyybearxo',
+        image: require('../../images/album/01_January-2.png'),
     },
     {
-        id: 'Patren',
-        image: require('../../images/information/Icon_Patreon.png'),
-        url: 'https://www.patreon.com/kayyybear',
+        id: 'APRIL',
+        image: require('../../images/album/01_January-3.png'),
     },
     {
-        id: 'Gumroad',
-        image: require('../../images/information/Icon_Gumroad.png'),
-        url: 'https://www.gumroad.com/kayyybear',
+        id: 'MAY',
+        image: require('../../images/album/01_January-4.png'),
     },
     {
-        id: 'Shopify',
-        image: require('../../images/information/Icon_Shopify.png'),
-        url: 'https://www.kaybear.shop',
+        id: 'JUNE',
+        image: require('../../images/album/01_January-5.png'),
     },
     {
-        id: 'OnlyFans',
-        image: require('../../images/information/Icon_OnlyFans.png'),
-        url: 'https://www.onlyfans.com/kayyybear',
+        id: 'JULY',
+        image: require('../../images/album/01_January-6.png'),
     },
     {
-        id: 'Youtube',
-        image: require('../../images/information/Icon_Youtube.png'),
-        url: 'https://www.youtube.com/kaybear',
+        id: 'AUGUST',
+        image: require('../../images/album/01_January-7.png'),
     },
     {
-        id: 'Twitch',
-        image: require('../../images/information/Icon_Twitch.png'),
-        url: 'https://www.twitch.tv/kayyybear',
+        id: 'SEPTEMBER',
+        image: require('../../images/album/01_January-8.png'),
+    },
+    {
+        id: 'OCTOBER',
+        image: require('../../images/album/01_January-9.png'),
+    },
+    {
+        id: 'NOVEMBER',
+        image: require('../../images/album/01_January-10.png'),
+    },
+    {
+        id: 'DECEMBER',
+        image: require('../../images/album/01_January-11.png'),
     },
 ];
 
 class Album extends Component {
-    handleClick = (url) => {
-        Linking.canOpenURL(url).then(supported => {
-            if (supported) {
-                Linking.openURL(url);
-            } else {
-                console.log("Don't know how to open URI: " +url);
-            }
-        });
+    constructor(props) {
+        super(props);
+        this.state = {
+            index: -1,
+        };
+    }
+    handleClick = (index) => {
+        this.setState({index: index});
     };
+
     render() {
         return (
           <Container style={styles.container}>
               <Content>
-                  <ImageBackground source={require('../../images/information/information.png')}
-                                   style={global.informationImage}
-                                   imageStyle={{borderRadius: 40}}>
-                      <View style={global.informationBottom} >
-                          <FlatList
-                            data={DATA}
-                            renderItem={({item}) => (
-                              <TouchableOpacity onPress={() => this.handleClick(item.url)}>
+                  <View style={global.centerTitle}>
+                      {this.state.index==-1?
+                      <FlatList
+                        data={DATA}
+                        renderItem={({item,index}) => (
+                          <TouchableOpacity onPress={() => this.handleClick(index)}>
                               <View style={{flex: 1, flexDirection: 'column'}}>
                                   <Image style={styles.imageThumbnail} source={item.image}/>
                                   <Text style={styles.itemText}>
                                       {item.id}
                                   </Text>
                               </View>
-                              </TouchableOpacity>
-                            )}
-                            //Setting the number of column
-                            numColumns={3}
-                            keyExtractor={(item, index) => index.toString()}
-                          />
-                          <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-                              <Image source={require('../../images/information/albumtest.png')} style={styles.bottomBtn}>
-                              </Image>
                           </TouchableOpacity>
-                      </View>
-                  </ImageBackground>
+                        )}
+                        //Setting the number of column
+                        numColumns={3}
+                        keyExtractor={(item, index) => index.toString()}
+                      />
+                      :<TouchableOpacity onPress={() => this.handleClick(-1)}>
+                        <Image source={DATA[this.state.index].image}  style={styles.bigImage}/>
+                            <Text style={styles.bigText}>
+                                {DATA[this.state.index].id}
+                            </Text>
+                        </TouchableOpacity>
+                      }
+                  </View>
               </Content>
           </Container>
+
         );
     }
 }

@@ -92,7 +92,7 @@ class Information extends Component {
                             numColumns={3}
                             keyExtractor={(item, index) => index.toString()}
                           />
-                          <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                          <TouchableOpacity onPress={() => this.props.navigation.navigate('Album')}>
                               <Image source={require('../../images/information/albumtest.png')} style={styles.bottomBtn}>
                               </Image>
                           </TouchableOpacity>

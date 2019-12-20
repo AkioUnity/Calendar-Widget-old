@@ -7,16 +7,29 @@ const styles: any = StyleSheet.create({
     backgroundColor: '#473F3F',
   },
   imageThumbnail:{
+    marginTop:11,
     width:w*0.3,
-    height:w*0.21,
+    height:h*0.2,
     resizeMode:'contain',
   },
   itemText:{
     textAlign: "center",
     color: "#FFF",
+    fontSize:11,
     justifyContent: 'center',
-    alignItems: 'center',
-    marginTop:-10,
+  },
+  bigImage:{
+    marginTop:20,
+    width:w*0.9,
+    height:h*0.85,
+    resizeMode:'contain',
+  },
+  bigText:{
+    padding:10,
+    textAlign: "center",
+    color: "#FFF",
+    fontSize:22,
+    justifyContent: 'center',
   },
   bottomBtn:{
     marginTop:-10,
