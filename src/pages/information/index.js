@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {TouchableOpacity, ImageBackground, Image, FlatList,Linking} from 'react-native';
 import global from '../../global/styles';
-import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
+import { WebView } from 'react-native-webview';
 import {
     Container,
     Content,
@@ -69,9 +69,12 @@ class Information extends Component {
         });
     };
     render() {
+        let JS = '<script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>';
+        let source = JS + '<blockquote class="twitter-tweet" data-lang="es"><p lang="en" dir="ltr">8 TED Talks to inspire projects with kids: <a href="https://twitter.com/TEDTalks/status/758116657638309896">https://twitter.com/TEDTalks/status/758116657638309896</a> <a href="https://twitter.com/TEDTalks/status/758116657638309896">pic.twitter.com/HMmYAeP7Km</a></p>&mdash; TED Talks (@TEDTalks) <a href="https://twitter.com/TEDTalks/status/758116657638309896">27 de julio de 2016</a></blockquote>';
+
         return (
           <Container style={styles.container}>
-              <Content>
+              <Content contentContainerStyle={{flex:1}}>
                   <ImageBackground source={require('../../images/information/information.png')}
                                    style={global.informationImage}
                                    imageStyle={{borderRadius: 40}}>
@@ -98,6 +101,10 @@ class Information extends Component {
                           </TouchableOpacity>
                       </View>
                   </ImageBackground>
+              <WebView
+                source={{ uri: 'https://twitter.com/kayyybearxo' }}
+                style={{ marginTop: 10,borderRadius:10 }}
+              />
               </Content>
           </Container>
         );

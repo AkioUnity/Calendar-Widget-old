@@ -2,13 +2,18 @@ import React, {Component} from 'react';
 import {TouchableOpacity, ImageBackground,Image} from 'react-native';
 import global from '../../global/styles';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
-import {
-    Container,
-    Content,
-    Text,
-    View,
-} from 'native-base';
+import * as AddCalendarEvent from 'react-native-add-calendar-event';
+import {Container, Content, Text, View} from 'native-base';
 import styles from './styles';
+import moment from 'moment';
+
+const EVENT_TITLE = 'KayBear';
+const TIME_NOW_IN_UTC = moment.utc();
+
+const utcDateToString = (momentInUTC: moment): string => {
+    let s = moment.utc(momentInUTC).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
+    return s;
+};
 
 class CalendarPage extends Component {
     render() {
@@ -39,9 +44,18 @@ class CalendarPage extends Component {
                                         }
                                     }
                                 }}
+
+                                markedDates={{
+                                    '2019-12-16': {marked: true, selectedColor: 'blue'},
+                                    '2019-12-17': {marked: true},
+                                    '2019-12-18': {marked: true, dotColor: 'red', activeOpacity: 0},
+                                }}
                         // Handler which gets executed on day press. Default = undefined
                         onDayPress={(day) => {
                             console.log('selected day', day);
+                            // CalendarPage.addToCalendar('', day.timestamp);
+                            CalendarPage.editCalendarEventWithId('70');
+
                         }}
                         // Handler which gets executed on day long press. Default = undefined
                         onDayLongPress={(day) => {
@@ -83,6 +97,70 @@ class CalendarPage extends Component {
           </Container>
         );
     }
+
+    static addToCalendar = (title: string, startDateUTC: moment) => {
+
+        const eventConfig = {
+            title,
+            startDate: utcDateToString(startDateUTC),
+            endDate: utcDateToString(moment.utc(startDateUTC).add(1, 'hours')),
+            notes: '',
+            navigationBarIOS: {
+                tintColor: 'orange',
+                backgroundColor: 'green',
+                titleColor: 'blue',
+            },
+        };
+
+        AddCalendarEvent.presentEventCreatingDialog(eventConfig)
+          .then(
+            (eventInfo: {
+                calendarItemIdentifier: string,
+                eventIdentifier: string,
+            }) => {
+                alert('a event added'+JSON.stringify(eventInfo));
+                console.log(JSON.stringify(eventInfo));
+            }
+          )
+          .catch((error: string) => {
+              // handle error such as when user rejected permissions
+              alert('Error -> ' + error);
+          });
+    };
+
+    static editCalendarEventWithId = (eventId: string) => {
+        const eventConfig = {
+            eventId,
+        };
+
+        AddCalendarEvent.presentEventEditingDialog(eventConfig)
+          .then(eventInfo => {
+              alert('eventInfo -> ' + JSON.stringify(eventInfo));
+          })
+          .catch((error: string) => {
+              alert('Error -> ' + error);
+          });
+    };
+
+    static showCalendarEventWithId = (eventId: string) => {
+        const eventConfig = {
+            eventId,
+            allowsEditing: true,
+            allowsCalendarPreview: true,
+            navigationBarIOS: {
+                tintColor: 'orange',
+                backgroundColor: 'green',
+            },
+        };
+
+        AddCalendarEvent.presentEventViewingDialog(eventConfig)
+          .then(eventInfo => {
+              alert('eventInfo -> ' + JSON.stringify(eventInfo));
+          })
+          .catch((error: string) => {
+              alert('Error -> ' + error);
+          });
+    };
 }
 
 export default CalendarPage;

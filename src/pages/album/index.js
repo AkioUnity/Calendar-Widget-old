@@ -1,13 +1,7 @@
 import React, {Component} from 'react';
-import {TouchableOpacity, ImageBackground, Image, FlatList, Linking,SafeAreaView} from 'react-native';
+import {TouchableOpacity,BackHandler, Image, FlatList} from 'react-native';
 import global from '../../global/styles';
-import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
-import {
-    Container,
-    Content,
-    Text,
-    View,
-} from 'native-base';
+import {    Container,    Content,    Text,    View} from 'native-base';
 import styles from './styles';
 
 const DATA = [
@@ -68,6 +62,27 @@ class Album extends Component {
             index: -1,
         };
     }
+    componentDidMount() {
+        BackHandler.addEventListener(
+          'hardwareBackPress',
+          this.handleBackButtonPressAndroid
+        );
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener(
+          'hardwareBackPress',
+          this.handleBackButtonPressAndroid
+        );
+    }
+
+    handleBackButtonPressAndroid = () => {
+        if (this.state.index!=-1){
+            this.setState({index:-1});
+            return true;
+        }
+        return false;
+    };
     handleClick = (index) => {
         this.setState({index: index});
     };

@@ -7,8 +7,8 @@ const styles: any = StyleSheet.create({
     backgroundColor: '#473F3F',
   },
   imageThumbnail:{
-    width:w*0.3,
-    height:w*0.21,
+    width:w*0.29,
+    height:w*0.2,
     resizeMode:'contain',
   },
   itemText:{

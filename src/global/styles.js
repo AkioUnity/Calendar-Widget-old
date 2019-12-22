@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   },
   informationBottom:{
     position: 'absolute',
-    bottom:-25,
+    bottom:-30,
     flex: 1,
     alignSelf: 'center',
   },
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch', // or 'stretch'
   },
   informationImage: {
-    width:w*0.9,
+    width:w*0.8,
     aspectRatio: 315 / 452,
     resizeMode: 'contain', // or 'stretch'
     textAlign:'center',
