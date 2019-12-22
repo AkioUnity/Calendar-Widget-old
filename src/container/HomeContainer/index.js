@@ -96,7 +96,6 @@ class HomeContainer extends React.Component<Props, State> {
                               value={this.state.call_system}/>
                         </Right>
                     </CardItem>
-
                 </Card>
             </Content>
             {/*</ImageBackground>*/}

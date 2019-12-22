@@ -2,13 +2,11 @@ import React, {Component} from 'react';
 import {TouchableOpacity, ImageBackground,Image} from 'react-native';
 import global from '../../global/styles';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
+import RNCalendarEvents from "react-native-calendar-events";
 import * as AddCalendarEvent from 'react-native-add-calendar-event';
 import {Container, Content, Text, View} from 'native-base';
 import styles from './styles';
 import moment from 'moment';
-
-const EVENT_TITLE = 'KayBear';
-const TIME_NOW_IN_UTC = moment.utc();
 
 const utcDateToString = (momentInUTC: moment): string => {
     let s = moment.utc(momentInUTC).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
@@ -16,6 +14,17 @@ const utcDateToString = (momentInUTC: moment): string => {
 };
 
 class CalendarPage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            key:1,
+            marks:{},
+        };
+    }
+
+    componentWillMount() {
+        this._fetchAllEvents();
+    }
     render() {
         return (
           <Container>
@@ -23,6 +32,7 @@ class CalendarPage extends Component {
                   <ImageBackground source={require('../../images/January.png')} style={global.backgroundImage}
                                    imageStyle={{borderRadius: 40}}>
                       <Calendar style={styles.calendar}
+                                key={this.state.key}
                                 theme={{
                                     calendarBackground: 'rgba(0,0,0,0)',
                                     textSectionTitleColor: '#75ff58',
@@ -44,18 +54,17 @@ class CalendarPage extends Component {
                                         }
                                     }
                                 }}
-
-                                markedDates={{
-                                    '2019-12-16': {marked: true, selectedColor: 'blue'},
-                                    '2019-12-17': {marked: true},
-                                    '2019-12-18': {marked: true, dotColor: 'red', activeOpacity: 0},
-                                }}
+                                markedDates={this.state.marks}
                         // Handler which gets executed on day press. Default = undefined
                         onDayPress={(day) => {
-                            console.log('selected day', day);
-                            // CalendarPage.addToCalendar('', day.timestamp);
-                            CalendarPage.editCalendarEventWithId('70');
-
+                            if (day.dateString in this.state.marks){
+                                CalendarPage.editCalendarEventWithId(this.state.marks[day.dateString].id);
+                            }
+                            else{
+                                CalendarPage.addToCalendar('', day.timestamp,day.dateString,this);
+                            }
+                            // console.log('selected day', day);   //dateString: "2019-12-18"
+                            // CalendarPage.showCalendarEventWithId('70');
                         }}
                         // Handler which gets executed on day long press. Default = undefined
                         onDayLongPress={(day) => {
@@ -98,7 +107,27 @@ class CalendarPage extends Component {
         );
     }
 
-    static addToCalendar = (title: string, startDateUTC: moment) => {
+    _fetchAllEvents = async () => {
+        try {
+            let allEvents = await RNCalendarEvents.fetchAllEvents(
+              "2019-12-01T19:26:00.000Z",
+              "2019-12-29T19:26:00.000Z"
+            );
+            console.log(allEvents);
+            //id,startDate: "2019-12-17T00:00:00.000Z"
+            let marks={};
+            for (let i=0;i<allEvents.length;i++){
+                let iso=allEvents[i].startDate;
+                let dStr=iso.substr(0,10);
+                console.log(dStr);
+                marks[dStr]={marked: true,id:allEvents[i].id};
+            }
+            this.setState({marks:marks});
+        } catch (error) {
+            alert("Failed to get events");
+        }
+    };
+    static addToCalendar = (title: string, startDateUTC: moment,dateString:string,Calendar:CalendarPage) => {
 
         const eventConfig = {
             title,
@@ -118,8 +147,13 @@ class CalendarPage extends Component {
                 calendarItemIdentifier: string,
                 eventIdentifier: string,
             }) => {
-                alert('a event added'+JSON.stringify(eventInfo));
+                // alert('a event added'+JSON.stringify(eventInfo));
                 console.log(JSON.stringify(eventInfo));
+                if ('eventIdentifier' in eventInfo){
+                    Calendar.state.marks[dateString]={marked: true,id:eventInfo.eventIdentifier};
+                    Calendar.setState({marks:Calendar.state.marks,key: Math.random()});
+                    console.log(Calendar.state);
+                }
             }
           )
           .catch((error: string) => {
@@ -135,7 +169,7 @@ class CalendarPage extends Component {
 
         AddCalendarEvent.presentEventEditingDialog(eventConfig)
           .then(eventInfo => {
-              alert('eventInfo -> ' + JSON.stringify(eventInfo));
+              // alert('eventInfo -> ' + JSON.stringify(eventInfo));
           })
           .catch((error: string) => {
               alert('Error -> ' + error);
