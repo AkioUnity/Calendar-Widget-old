@@ -42,6 +42,7 @@ local.properties
 #
 !node_modules/
 node_modules/*
+!node_modules/react-native-calendar-events/
 !node_modules/react-native-calendars/
 node_modules/react-native-calendars/*
 !node_modules/react-native-calendars/src/
