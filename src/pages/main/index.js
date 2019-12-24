@@ -20,12 +20,11 @@ class Main extends Component {
     };
 
     render() {
-        const {props: {name}} = this;
         return (
           <Container style={global.container}>
               <Content>
                   <TouchableOpacity onPress={() => this.props.navigation.navigate('Calendar')}>
-                      <ImageBackground source={require('../../images/January.png')} style={global.backgroundImage}
+                      <ImageBackground source={require('../../images/album/01_January-4.png')} style={global.backgroundImage}
                                        imageStyle={{borderRadius: 40}}>
                           <Text style={styles.title}>
                               January

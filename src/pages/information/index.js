@@ -76,8 +76,7 @@ class Information extends Component {
           <Container style={styles.container}>
               <Content contentContainerStyle={{flex:1}}>
                   <ImageBackground source={require('../../images/information/information.png')}
-                                   style={global.informationImage}
-                                   imageStyle={{borderRadius: 40}}>
+                                   style={global.informationImage}>
                       <View style={global.informationBottom} >
                           <FlatList
                             data={DATA}

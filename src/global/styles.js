@@ -20,14 +20,16 @@ const styles = StyleSheet.create({
     bottom:-30,
     flex: 1,
     alignSelf: 'center',
+    justifyContent: 'center',
   },
   backgroundImage: {
     width:w,
-    height:h-24,
-    resizeMode: 'stretch', // or 'stretch'
+    height:h,
+    alignSelf: 'center',
+    resizeMode: 'contain', // or 'stretch'
   },
   informationImage: {
-    width:w*0.8,
+    width:w*0.85,
     aspectRatio: 315 / 452,
     resizeMode: 'contain', // or 'stretch'
     textAlign:'center',

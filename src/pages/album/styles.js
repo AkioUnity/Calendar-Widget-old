@@ -9,7 +9,7 @@ const styles: any = StyleSheet.create({
   imageThumbnail:{
     marginTop:11,
     width:w*0.3,
-    height:h*0.2,
+    height:h*0.21,
     resizeMode:'contain',
   },
   itemText:{
@@ -20,8 +20,8 @@ const styles: any = StyleSheet.create({
   },
   bigImage:{
     marginTop:20,
-    width:w*0.9,
-    height:h*0.85,
+    width:w*0.92,
+    height:h*0.9,
     resizeMode:'contain',
   },
   bigText:{

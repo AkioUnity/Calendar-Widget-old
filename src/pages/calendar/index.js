@@ -39,16 +39,16 @@ class CalendarPage extends Component {
                                     dayTextColor: 'white',
                                     todayTextColor: '#57b1ff',
                                     selectedDayTextColor: '#ffe663',
-                                    monthTextColor: '#ffcc83',
+                                    monthTextColor: '#ffa1f1',
                                     textMonthFontWeight:'500',
-                                    textMonthFontSize:18,
-                                    indicatorColor: '#f470ff',
+                                    textMonthFontSize:24,
+                                    indicatorColor: '#ffaa9c',
                                     selectedDayBackgroundColor: '#050507',
-                                    arrowColor: '#8f68ff',
+                                    arrowColor: '#ffc1c3',
                                     textDisabledColor: '#7b7b7b',
                                     'stylesheet.calendar.header': {
                                         week: {
-                                            marginTop: 10,
+                                            margin:15,
                                             flexDirection: 'row',
                                             justifyContent: 'space-between'
                                         }
@@ -58,7 +58,7 @@ class CalendarPage extends Component {
                         // Handler which gets executed on day press. Default = undefined
                         onDayPress={(day) => {
                             if (day.dateString in this.state.marks){
-                                CalendarPage.editCalendarEventWithId(this.state.marks[day.dateString].id);
+                                CalendarPage.editCalendarEventWithId(this.state.marks[day.dateString].id,this);
                             }
                             else{
                                 CalendarPage.addToCalendar('', day.timestamp,day.dateString,this);
@@ -109,6 +109,7 @@ class CalendarPage extends Component {
 
     _fetchAllEvents = async () => {
         try {
+            await RNCalendarEvents.authorizeEventStore();
             let allEvents = await RNCalendarEvents.fetchAllEvents(
               "2019-12-01T19:26:00.000Z",
               "2019-12-29T19:26:00.000Z"
@@ -120,7 +121,7 @@ class CalendarPage extends Component {
                 let iso=allEvents[i].startDate;
                 let dStr=iso.substr(0,10);
                 console.log(dStr);
-                marks[dStr]={marked: true,id:allEvents[i].id};
+                marks[dStr]={marked: true,id:allEvents[i].id,title:allEvents[i].title};
             }
             this.setState({marks:marks});
         } catch (error) {
@@ -150,9 +151,10 @@ class CalendarPage extends Component {
                 // alert('a event added'+JSON.stringify(eventInfo));
                 console.log(JSON.stringify(eventInfo));
                 if ('eventIdentifier' in eventInfo){
-                    Calendar.state.marks[dateString]={marked: true,id:eventInfo.eventIdentifier};
-                    Calendar.setState({marks:Calendar.state.marks,key: Math.random()});
-                    console.log(Calendar.state);
+                    Calendar._fetchAllEvents();
+                    // Calendar.state.marks[dateString]={marked: true,id:eventInfo.eventIdentifier};
+                    // Calendar.setState({marks:Calendar.state.marks,key: Math.random()});
+                    // console.log(Calendar.state);
                 }
             }
           )
@@ -162,13 +164,14 @@ class CalendarPage extends Component {
           });
     };
 
-    static editCalendarEventWithId = (eventId: string) => {
+    static editCalendarEventWithId = (eventId: string,Calendar:CalendarPage) => {
         const eventConfig = {
             eventId,
         };
 
         AddCalendarEvent.presentEventEditingDialog(eventConfig)
           .then(eventInfo => {
+              Calendar._fetchAllEvents();
               // alert('eventInfo -> ' + JSON.stringify(eventInfo));
           })
           .catch((error: string) => {

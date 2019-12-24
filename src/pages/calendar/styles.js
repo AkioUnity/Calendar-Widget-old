@@ -7,9 +7,10 @@ const styles: any = StyleSheet.create({
     // opacity:0.5,
     backgroundColor: 'rgba(0,0,0,0.6)',
     borderRadius: 35,
-    height: h-25
+    height: h
   },
   bottomBtn:{
+    marginBottom:10,
     width:w*0.35*0.7,
     height:w*0.35*0.42,
     resizeMode:'contain',

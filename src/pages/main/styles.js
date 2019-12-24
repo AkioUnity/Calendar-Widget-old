@@ -4,6 +4,8 @@ const w=Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   title:{
+    padding:10,
+    paddingTop:20,
     fontSize:28,
     fontWeight: 'bold',
     color:'#000',
